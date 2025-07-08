@@ -7,6 +7,9 @@
 #include <memory>
 
 #include "win32_window.h"
+#include "../native_event_handler.h" // Added for native event handling
+#include <flutter/method_channel.h>    // Added for method channel
+#include <flutter/standard_method_codec.h> // Added for method channel
 
 // A window that does nothing but host a Flutter view.
 class FlutterWindow : public Win32Window {
@@ -16,6 +19,7 @@ class FlutterWindow : public Win32Window {
   virtual ~FlutterWindow();
 
  protected:
+  void SetupMethodChannel(); // Added
   // Win32Window:
   bool OnCreate() override;
   void OnDestroy() override;
@@ -28,6 +32,12 @@ class FlutterWindow : public Win32Window {
 
   // The Flutter instance hosted by this window.
   std::unique_ptr<flutter::FlutterViewController> flutter_controller_;
+
+  // Native event handler instance
+  std::unique_ptr<NativeEventHandler> native_event_handler_; // Added
+
+  // Method channel for communication with Flutter
+  std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> method_channel_; // Added
 };
 
 #endif  // RUNNER_FLUTTER_WINDOW_H_

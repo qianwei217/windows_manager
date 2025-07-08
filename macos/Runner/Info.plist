@@ -28,5 +28,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSAccessibilityUsageDescription</key>
+	<string>This app requires accessibility permissions to record and simulate keyboard and mouse events globally.</string>
 </dict>
 </plist>
